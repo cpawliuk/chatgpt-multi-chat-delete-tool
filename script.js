@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ChatGPT Multi-Chat Delete Tool
 // @website      https://github.com/cpawliuk/chatgpt-multi-chat-delete-tool
-// @version      1.0
+// @version      1.1
 // @description  Script to batch delete messages from ChatGPT.com.
 // @author       Christopher Pawliuk
 // @match        *://chatgpt.com/*
@@ -370,7 +370,14 @@ function RunScript() {
         uiContainerElements.containerSubTitleText.style.display = '';
 
         const chatItemsForDelete = Array.from(document.getElementsByClassName('chat-item__checkbox--marked-for-delete'));
+        
+        let itemCount = 0;
+        let amountOfItemsToDelete = chatItemsForDelete.length;
+
         for (const chatItem of chatItemsForDelete) {
+            itemCount++;
+            uiContainerElements.containerSubTitleText.textContent = `||   Deleting ${itemCount} of ${amountOfItemsToDelete} . . .   !! Please keep this window and tab in focus !!`;
+
             chatItem.nextElementSibling.nextElementSibling.querySelector('svg').dispatchEvent(new PointerEvent('pointerdown', { bubbles: true, cancelable: true, view: window }));
             await delay(clickDelayTimeMS).myPromise;
             const chatItemMenu = document.querySelector('[role="menu"]');

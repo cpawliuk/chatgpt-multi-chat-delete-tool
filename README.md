@@ -1,4 +1,4 @@
-# ChatGPT Multi-Chat Delete Tool 1.0.0
+# ChatGPT Multi-Chat Delete Tool 1.1.0
 
 ChatGPT's UI forces you to delete chats one by one, but this script allows you to batch delete chats with ease.
 
